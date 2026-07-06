@@ -1,0 +1,38 @@
+# Local environment and secrets. Keep the checked-in example.
+/.env
+/.env.*
+!/.env.example
+
+# Local runtime output
+/.venv/
+/logs/
+/storage/
+/vllm_models/
+/.pipeline.lock
+
+# Python caches and tooling
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Build outputs
+/build/
+/dist/
+
+# Local databases or scratch artifacts
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
