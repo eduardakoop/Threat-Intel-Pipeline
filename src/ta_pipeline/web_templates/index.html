@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TAsAutomation Console</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-block">
+        <img class="brand-logo" src="{{ url_for('static', filename='cyberfloridalogo.png') }}" alt="Cyber Florida at the University of South Florida">
+        <div class="brand-copy">
+          <h1>Threat Advisory Console</h1>
+          <p>Local automation workspace</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <span class="status-pill" id="model-pill">Model unchecked</span>
+        <button class="button secondary" id="health-button" type="button">Check Model</button>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <aside class="sidebar">
+        <section class="panel run-panel">
+          <div class="panel-heading">
+            <h2>Pipeline</h2>
+            <span class="status-pill muted" id="job-pill">Idle</span>
+          </div>
+
+          <label class="check-row">
+            <input id="skip-health" type="checkbox">
+            <span>Skip model health probe</span>
+          </label>
+
+          <div class="button-row">
+            <button class="button primary" id="start-run-button" type="button">Run Full Pipeline</button>
+            <button class="button danger" id="stop-run-button" type="button" disabled>Stop</button>
+          </div>
+
+          <dl class="job-facts">
+            <div>
+              <dt>Started</dt>
+              <dd id="job-started">Not running</dd>
+            </div>
+            <div>
+              <dt>Output</dt>
+              <dd id="job-output">No active output</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="panel history-panel">
+          <div class="panel-heading">
+            <h2>Runs</h2>
+            <button class="button ghost" id="refresh-button" type="button">Refresh</button>
+          </div>
+          <div class="run-list" id="run-list"></div>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <div class="notice" id="notice" hidden></div>
+
+        <section class="summary-band">
+          <div class="metric-tile accent-green">
+            <span>Articles</span>
+            <strong id="metric-articles">0</strong>
+          </div>
+          <div class="metric-tile accent-blue">
+            <span>Clusters</span>
+            <strong id="metric-clusters">0</strong>
+          </div>
+          <div class="metric-tile accent-amber">
+            <span>TA Eligible</span>
+            <strong id="metric-eligible">0</strong>
+          </div>
+          <div class="metric-tile accent-red">
+            <span>TA Briefs</span>
+            <strong id="metric-briefs">0</strong>
+          </div>
+        </section>
+
+        <nav class="tabs" aria-label="Run views">
+          <button class="tab active" data-tab="overview" type="button">Overview</button>
+          <button class="tab" data-tab="clusters" type="button">Clusters</button>
+          <button class="tab" data-tab="briefs" type="button">TA Briefs</button>
+          <button class="tab" data-tab="logs" type="button">Logs</button>
+        </nav>
+
+        <section class="view active" id="view-overview">
+          <div class="overview-grid">
+            <section class="panel">
+              <div class="panel-heading">
+                <h2 id="overview-run-title">No run selected</h2>
+                <a class="button secondary" id="download-run-link" href="#" aria-disabled="true">Download ZIP</a>
+              </div>
+              <dl class="detail-list">
+                <div>
+                  <dt>Run path</dt>
+                  <dd id="overview-run-path">Select a run.</dd>
+                </div>
+                <div>
+                  <dt>Top cluster</dt>
+                  <dd id="overview-top-cluster">No scored clusters yet.</dd>
+                </div>
+                <div>
+                  <dt>Last modified</dt>
+                  <dd id="overview-modified">Unknown</dd>
+                </div>
+              </dl>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h2>Runtime</h2>
+              </div>
+              <dl class="detail-list compact" id="config-list"></dl>
+            </section>
+          </div>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <h2>Selected Outputs</h2>
+            </div>
+            <div class="output-grid" id="selected-output-grid"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-clusters">
+          <section class="panel cluster-tools">
+            <input class="search-input" id="cluster-search" type="search" placeholder="Search clusters, CVEs, headlines, sources">
+            <label class="check-row inline">
+              <input id="eligible-only" type="checkbox">
+              <span>TA eligible only</span>
+            </label>
+          </section>
+
+          <div class="cluster-layout">
+            <section class="panel table-panel">
+              <div class="table-wrap">
+                <table class="cluster-table">
+                  <thead>
+                    <tr>
+                      <th>Cluster</th>
+                      <th>Score</th>
+                      <th>Eligibility</th>
+                      <th>Articles</th>
+                      <th>Headline</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cluster-table-body"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel cluster-detail" id="cluster-detail">
+              <div class="empty-state">Select a cluster to inspect scores, evidence, summary, and TA brief.</div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-briefs">
+          <div class="brief-grid" id="brief-grid"></div>
+        </section>
+
+        <section class="view" id="view-logs">
+          <section class="panel">
+            <div class="panel-heading">
+              <h2>Pipeline Log</h2>
+              <span class="status-pill muted" id="log-file-label">No active log</span>
+            </div>
+            <pre class="log-view" id="log-view">No active run.</pre>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

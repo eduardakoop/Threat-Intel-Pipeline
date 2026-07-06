@@ -1,0 +1,19 @@
+{
+  "files": {
+    "agents/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "agents/executive_writer.py": "4d6da37b1ea3fb0fe6c03bb182797c6dd74865aa9fd1b94de493bf1b5d9ec3a4",
+    "agents/scorer.py": "d912cdebaa6c8c139dc2fd0d7aecad623a1ec83e651d693a0b072e3c393f9708",
+    "agents/ta_prep.py": "40567b814d90e8d45e40ac465219606f0aa840d7085abbdfd851c01e9cd9814d",
+    "app_config.py": "4ea543012fc6fdfea45c5f02bc3416add73655606e123449a05c04881212edde",
+    "llm/client.py": "08c01295d66db2c4d1d240c1b8bf19fd45dda21293629ce2aea5371e9de49ccc",
+    "llm/executor.py": "cc545da2744f6cc27ca6c9764bf3c6ac8cd516e8ff62e293be33663910d1dea4",
+    "llm/parser.py": "0474841d8e9e004f4cbf73d8955941e7e2a0367241c203c3d1340479a49fe5df",
+    "tasks/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tasks/executive_summary.py": "31df06fb749953649402990951b2e54892c02d756cc761e5655eeaa0e1360b98",
+    "tasks/scoring.py": "938e9c1b3e4039011bf5d9abad2121e215983e25f7aaa58daebdc5837e0a3da3",
+    "tasks/ta_prep.py": "339b71de38bfb57890ee3a1596160213acdf1c741f67a9de3de7bdcc19b8e044"
+  },
+  "generated_at": "2026-04-24T17:58:59.108680+00:00",
+  "manifest_version": 1,
+  "package_root": "ta_pipeline"
+}

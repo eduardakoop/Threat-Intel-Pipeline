@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tasautomation"
+version = "0.1.0"
+description = "Local-first threat advisory automation pipeline."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "beautifulsoup4",
+  "feedparser",
+  "Flask",
+  "numpy",
+  "openai",
+  "requests",
+]
+
+[project.optional-dependencies]
+runtime = [
+  "sentence-transformers",
+]
+dev = [
+  "pytest>=8.0",
+]
+
+[project.scripts]
+ta-pipeline = "ta_pipeline.cli:main"
+ta-pipeline-web = "ta_pipeline.web_ui:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["content_pipeline*", "ta_pipeline*"]
+
+[tool.setuptools.package-data]
+ta_pipeline = [
+  "web_templates/*.html",
+  "web_static/*.css",
+  "web_static/*.js",
+  "web_static/*.png",
+]
